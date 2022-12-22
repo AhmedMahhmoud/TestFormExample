@@ -1,0 +1,38 @@
+{
+    "title": "Personal Information",
+    "fields": [
+      {
+        "input_text_field":[
+            {
+                "label":"username",
+                "required":true,
+                "value":""
+            },
+            {
+                "label":"password",
+                "required":true,
+                "value":""
+            },
+            {
+                "label":"location",
+                "required":true,
+                "value":""
+            }
+        ],
+        "radio_button":[
+            {
+                "label":"gender",
+                "value":"male",
+                "items":["male","female"]
+            },
+            {
+                "label":"age",
+                "value":">12",
+                "items":[">12","<12"]
+            }
+            
+        ]
+      
+      }
+    ]
+  }
