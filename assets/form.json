@@ -1,6 +1,6 @@
 {
     "title": "Personal Information",
-    "fields": [
+    "fields": 
       {
         "input_text_field":[
             {
@@ -9,15 +9,18 @@
                 "value":""
             },
             {
-                "label":"password",
-                "required":true,
+                "label":"test not requried",
+                "required":false,
                 "value":""
             },
             {
-                "label":"location",
+                "label":"password",
                 "required":true,
                 "value":""
             }
+ 
+        
+   
         ],
         "radio_button":[
             {
@@ -30,9 +33,18 @@
                 "value":">12",
                 "items":[">12","<12"]
             }
+      
             
+        ],
+        "drop_down":[
+            {
+                "label":"Country",
+                "value":"Egypt",
+                "items":["Egypt","United States","Saudi Arabia","Japan"]
+                
+            }
+     
         ]
       
       }
-    ]
   }

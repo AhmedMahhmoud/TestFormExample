@@ -1,11 +1,14 @@
 class TextFieldModel {
   final String label;
-  final bool required;
-  final String? value;
+  final bool requiredField;
+  String? value;
 
-  TextFieldModel({required this.label, required this.required, this.value});
-  factory TextFieldModel.fromMap(Map<String, dynamic> json) {
+  TextFieldModel(
+      {required this.label, required this.requiredField, this.value});
+  factory TextFieldModel.fromMap(json) {
     return TextFieldModel(
-        required: json['required'], label: json['label'], value: json['value']);
+        requiredField: json['required'],
+        label: json['label'],
+        value: json['value']);
   }
 }
