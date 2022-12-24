@@ -1,0 +1,46 @@
+{
+    "title": "Personal Information",
+    "data": 
+      {
+        "fields":
+        [
+            {
+                "type":"input_text_field",
+                "label":"username",
+                "required":true,
+                "value":""
+            },
+            {   "type":"input_text_field",
+                "label":"password",
+                "required":true,
+                "value":""
+            },
+            {   "type":"drop_down",
+                "label":"Country",
+                "value":"Egypt",
+                "items":["Egypt","United States","Saudi Arabia","Japan"]
+            },
+            {   "type":"radio_button",
+                "label":"gender",
+                "value":"male",
+                "items":["male","female"]
+            },
+            {   "type":"input_text_field",
+                "label":"email",
+                "required":false,
+                "value":""
+            }     ,
+               {   "type":"radio_button",
+            "label":"age",
+            "value":">12",
+            "items":[">12","<12"]
+        }
+
+        ]
+  
+       
+            
+    
+      
+      }
+  }

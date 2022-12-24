@@ -5,10 +5,12 @@ import 'package:first_test/model/radio_button_model.dart';
 import 'package:first_test/model/text_field_model.dart';
 
 class FormBuilder {
+  final String formName;
   final List<TextFieldModel> textFieldsList;
   final List<RadioButtonModel> radioButtonsList;
   final List<DropDownModel> dropDownList;
   FormBuilder({
+    required this.formName,
     required this.textFieldsList,
     required this.radioButtonsList,
     required this.dropDownList,
@@ -16,6 +18,7 @@ class FormBuilder {
 
   factory FormBuilder.fromMap(json) {
     return FormBuilder(
+        formName: json['title'],
         dropDownList: parseDropDown(json),
         textFieldsList: parseTextField(json),
         radioButtonsList: parseRadioButtons(json));

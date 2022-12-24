@@ -1,11 +1,10 @@
-import 'package:first_test/model/radio_button_model.dart';
-import 'package:first_test/model/text_field_model.dart';
 import 'package:flutter/material.dart';
 
-class DisplayForm extends StatelessWidget {
-  final List<TextFieldModel>? textFields;
-  final List<RadioButtonModel>? selectedRadios;
-  const DisplayForm({this.selectedRadios, this.textFields, super.key});
+import 'model-2/form_builder_2.dart';
+
+class DisplayForm2 extends StatelessWidget {
+  final FormBuilder2 form;
+  const DisplayForm2({required this.form, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +30,7 @@ class DisplayForm extends StatelessWidget {
                     const Divider(
                       thickness: 1,
                     ),
-                    SizedBox(
-                      height: textFields!.length * 40,
+                    Expanded(
                       child: ListView.separated(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -40,31 +38,15 @@ class DisplayForm extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return Row(
                               children: [
-                                Text("${textFields![index].label} : "),
-                                Text(textFields![index].value.toString())
+                                Text("${form.formDataList[index].label} : "),
+                                Text(form.formDataList[index].value.toString())
                               ],
                             );
                           },
-                          itemCount: textFields!.length),
+                          itemCount: form.formDataList.length),
                     ),
                     const Divider(
                       thickness: 1,
-                    ),
-                    SizedBox(
-                      height: selectedRadios!.length * 40,
-                      child: ListView.separated(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          separatorBuilder: (context, index) => const Divider(),
-                          itemBuilder: (context, index) {
-                            return Row(
-                              children: [
-                                Text("${selectedRadios![index].label} : "),
-                                Text(selectedRadios![index].value.toString())
-                              ],
-                            );
-                          },
-                          itemCount: selectedRadios!.length),
                     ),
                   ],
                 ),

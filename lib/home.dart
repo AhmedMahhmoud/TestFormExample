@@ -1,4 +1,3 @@
-import 'package:first_test/model/drop_down_model.dart';
 import 'package:first_test/model/form_builder_model.dart';
 import 'package:first_test/model/radio_button_model.dart';
 import 'package:first_test/widgets/display_form_fields_list.dart';
@@ -19,8 +18,7 @@ class Home extends StatefulWidget {
 
 List<TextFormField>? formFieldsList = [];
 List<TextEditingController>? formFieldsControllers = [];
-List<String>? selectedRadio = []; //initialValue for each radio
-List<String>? selectedDropdown = [];
+
 List<List<RadioListTile>>? radioList = [];
 List<DropdownButton>? dropDownList = [];
 late Future<FormBuilder> getData;
@@ -50,11 +48,11 @@ class _HomeState extends State<Home> {
     if (radioFields.isNotEmpty) {
       for (int i = 0; i < radioFields.length; i++) {
         radioList!.insert(i, []);
-        selectedRadio!.insert(i, radioFields[i].value);
+
         for (int j = 0; j < radioFields[i].items.length; j++) {
           radioList![i].add(RadioListTile(
             value: radioFields[i].items[j],
-            groupValue: selectedRadio![i],
+            groupValue: radioFields[i].value,
             onChanged: (value) {},
           ));
         }
@@ -62,14 +60,6 @@ class _HomeState extends State<Home> {
     }
 
     return radioList;
-  }
-
-  List<DropdownButton>? fillDropDownsSelectedItem(
-      List<DropDownModel> dropdowns) {
-    for (int i = 0; i < dropdowns.length; i++) {
-      selectedDropdown!.add(dropdowns[i].value);
-    }
-    return null;
   }
 
   List<TextFormField>? fillFormFields(List<TextFieldModel> inputFields) {
@@ -103,7 +93,6 @@ class _HomeState extends State<Home> {
   initializeFormDisplay() {
     fillRadioTiles(formData.radioButtonsList);
     fillFormFields(formData.textFieldsList);
-    fillDropDownsSelectedItem(formData.dropDownList);
     isFormItemsIntialized = true;
   }
 
@@ -136,6 +125,12 @@ class _HomeState extends State<Home> {
                           child: ListView(
                             shrinkWrap: true,
                             children: [
+                              Text(
+                                '${formData.formName} form',
+                                style: TextStyle(
+                                    color: Colors.blue.shade700,
+                                    fontWeight: FontWeight.bold),
+                              ),
                               if (formFieldsList!.isNotEmpty)
                                 DisplayFormFieldList(
                                   textFormFields: formFieldsList!,
@@ -164,11 +159,12 @@ class _HomeState extends State<Home> {
                                                 child: Text(items),
                                               );
                                             }).toList(),
-                                            value: selectedDropdown![index],
+                                            value: formData
+                                                .dropDownList[index].value,
                                             onChanged: (value) {
                                               setState(() {
-                                                selectedDropdown![index] =
-                                                    value.toString();
+                                                formData.dropDownList[index]
+                                                    .value = value.toString();
                                               });
                                             },
                                           ),
@@ -187,12 +183,12 @@ class _HomeState extends State<Home> {
                                   DisplayRadioFieldsList(
                                     label: formData.radioButtonsList[i].label,
                                     radioFunc: (val) {
-                                      selectedRadio![i] = val;
                                       formData.radioButtonsList[i].value = val;
                                       setState(() {});
                                     },
                                     radioListTile: radioList![i],
-                                    selectedRadioVal: selectedRadio![i],
+                                    selectedRadioVal:
+                                        formData.radioButtonsList[i].value,
                                   ),
                             ],
                           ),
